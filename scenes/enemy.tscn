@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://hxg4e8skwgtj"]
+
+[ext_resource type="Texture2D" uid="uid://bysaf15sdy6cs" path="res://art/big_demon_idle_anim_f0.png" id="1_efk1o"]
+[ext_resource type="Script" uid="uid://bn713ccv3tcjm" path="res://scripts/enemy.gd" id="1_ehgv1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wvnf2"]
+
+[node name="enemy" type="CharacterBody2D"]
+script = ExtResource("1_ehgv1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_efk1o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_wvnf2")
+
+[node name="south" type="RayCast2D" parent="."]
+position = Vector2(0, 4)
+scale = Vector2(25, 9.5)
+target_position = Vector2(0, 15)
+collide_with_areas = true
+
+[node name="west" type="RayCast2D" parent="."]
+position = Vector2(0, 4)
+scale = Vector2(9.5, 25)
+target_position = Vector2(-15, 0)
+collide_with_areas = true
+
+[node name="north" type="RayCast2D" parent="."]
+position = Vector2(0, 4)
+scale = Vector2(25, 9.5)
+target_position = Vector2(0, -15)
+collide_with_areas = true
+
+[node name="east" type="RayCast2D" parent="."]
+position = Vector2(0, 4)
+scale = Vector2(9.5, 25)
+target_position = Vector2(15, 0)
+collide_with_areas = true
+
+[node name="north_west" type="RayCast2D" parent="."]
+position = Vector2(0, 4)
+scale = Vector2(25, 25)
+target_position = Vector2(-7, -7)
+collide_with_areas = true
+
+[node name="north_east" type="RayCast2D" parent="."]
+position = Vector2(0, 4)
+scale = Vector2(25, 25)
+target_position = Vector2(7, -7)
+collide_with_areas = true
+
+[node name="south_west" type="RayCast2D" parent="."]
+position = Vector2(0, 4)
+scale = Vector2(25, 25)
+target_position = Vector2(-7, 7)
+collide_with_areas = true
+
+[node name="south_east" type="RayCast2D" parent="."]
+position = Vector2(0, 4)
+scale = Vector2(25, 25)
+target_position = Vector2(7, 7)
+collide_with_areas = true

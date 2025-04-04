@@ -1,0 +1,155 @@
+[gd_scene load_steps=22 format=3 uid="uid://bhfgk8egcvyo6"]
+
+[ext_resource type="Script" uid="uid://dfd85vdtfaeou" path="res://scripts/ore.gd" id="1_v8whg"]
+[ext_resource type="Texture2D" uid="uid://cv3qc0xldjvks" path="res://art/broken_stone2.png" id="2_pp21y"]
+[ext_resource type="Texture2D" uid="uid://bvn8hjg6kjq8r" path="res://art/stone2.png" id="3_4pju6"]
+[ext_resource type="Texture2D" uid="uid://c8y0t5ddnpl4f" path="res://art/iron2.png" id="4_4s8a1"]
+[ext_resource type="Texture2D" uid="uid://lq8b5vo37bjf" path="res://art/gold2.png" id="5_inr4v"]
+[ext_resource type="Texture2D" uid="uid://7de6boacxxxk" path="res://art/ruby.png" id="6_gjdi2"]
+[ext_resource type="Texture2D" uid="uid://b6afovatkn787" path="res://art/diamond2.png" id="7_tpufu"]
+[ext_resource type="AudioStream" uid="uid://c2w8r8b3cpxfl" path="res://art/audi/mining sound effect.mp3" id="8_t7imr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2asf1"]
+radius = 6.0
+height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o58nv"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cmbji"]
+radius = 9.0
+
+[sub_resource type="Gradient" id="Gradient_pslsv"]
+offsets = PackedFloat32Array(0.458065, 0.974194, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.760784, 0.635294, 0.0156863, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ofcs"]
+gradient = SubResource("Gradient_pslsv")
+fill = 1
+fill_from = Vector2(0.53211, 0.495413)
+fill_to = Vector2(0.793578, 0.325688)
+
+[sub_resource type="Gradient" id="Gradient_cbc0s"]
+offsets = PackedFloat32Array(0.393548, 0.948387, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.132049, 0.630661, 0.687118, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_asghc"]
+gradient = SubResource("Gradient_cbc0s")
+fill = 1
+fill_from = Vector2(0.527523, 0.522936)
+fill_to = Vector2(0.743119, 0.325688)
+
+[sub_resource type="Gradient" id="Gradient_xcaxc"]
+offsets = PackedFloat32Array(0.322581, 0.954839, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.925155, 0.109407, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qk7qo"]
+gradient = SubResource("Gradient_xcaxc")
+fill = 1
+fill_from = Vector2(0.545872, 0.481651)
+fill_to = Vector2(0.788991, 0.307339)
+
+[sub_resource type="Gradient" id="Gradient_ipx8t"]
+offsets = PackedFloat32Array(0.270968, 0.954839, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.650128, 0.650128, 0.650128, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5o1io"]
+gradient = SubResource("Gradient_ipx8t")
+fill = 1
+fill_from = Vector2(0.522936, 0.509174)
+fill_to = Vector2(0.756881, 0.261468)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_g328o"]
+polygon = PackedVector2Array(-4, 7, 5, 7, 8, 3, 7, -1, 4, -5, 1, -6, -3, -6, -6, -5, -7, -2, -7, 1, -7, 3, -5, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2x08"]
+radius = 14.1421
+
+[node name="ore" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_v8whg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_2asf1")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_o58nv")
+disabled = true
+
+[node name="sprites" type="Node2D" parent="."]
+
+[node name="broken" type="Sprite2D" parent="sprites"]
+position = Vector2(0.2, -2.8)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_pp21y")
+
+[node name="stone" type="Sprite2D" parent="sprites"]
+position = Vector2(0.2, -6.8)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_4pju6")
+
+[node name="iron" type="Sprite2D" parent="sprites"]
+position = Vector2(0.2, -6.8)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_4s8a1")
+
+[node name="gold" type="Sprite2D" parent="sprites"]
+position = Vector2(0.2, -6.8)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_inr4v")
+
+[node name="ruby" type="Sprite2D" parent="sprites"]
+position = Vector2(0.2, -6.8)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("6_gjdi2")
+
+[node name="diamond" type="Sprite2D" parent="sprites"]
+position = Vector2(0.2, -6.8)
+scale = Vector2(0.6, 0.7)
+texture = ExtResource("7_tpufu")
+
+[node name="mine_true" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mine_true"]
+shape = SubResource("CircleShape2D_cmbji")
+
+[node name="lights" type="Node2D" parent="."]
+position = Vector2(-2, 0)
+
+[node name="gold" type="PointLight2D" parent="lights"]
+texture = SubResource("GradientTexture2D_0ofcs")
+
+[node name="diamond" type="PointLight2D" parent="lights"]
+texture = SubResource("GradientTexture2D_asghc")
+
+[node name="ruby" type="PointLight2D" parent="lights"]
+texture = SubResource("GradientTexture2D_qk7qo")
+
+[node name="remainingtwo" type="PointLight2D" parent="lights"]
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_5o1io")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_g328o")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_g328o")
+
+[node name="mine_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_t7imr")
+volume_db = -5.0
+
+[node name="In_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="In_area"]
+shape = SubResource("CircleShape2D_g2x08")
+
+[connection signal="area_entered" from="mine_true" to="." method="_on_mine_true_area_entered"]
+[connection signal="area_exited" from="mine_true" to="." method="_on_mine_true_area_exited"]
+[connection signal="body_entered" from="In_area" to="." method="_on_in_area_body_entered"]
+[connection signal="body_exited" from="In_area" to="." method="_on_in_area_body_exited"]

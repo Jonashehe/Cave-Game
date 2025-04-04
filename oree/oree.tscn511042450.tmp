@@ -1,0 +1,132 @@
+[gd_scene load_steps=22 format=3 uid="uid://dc12q557nhkvo"]
+
+[ext_resource type="Script" uid="uid://dxpsnqfgrda5u" path="res://oree/oree.gd" id="1_qfv8v"]
+[ext_resource type="Script" uid="uid://bdal6pv23b7nq" path="res://oree/hit_area.gd" id="2_hclyt"]
+[ext_resource type="Script" uid="uid://dn5qkkb7uqkyn" path="res://oree/ore_state_machine.gd" id="3_nyemc"]
+[ext_resource type="Script" uid="uid://bajrj8gkgmb0q" path="res://oree/ore_untouched.gd" id="4_ngldl"]
+[ext_resource type="Script" uid="uid://8umhfqemw4va" path="res://oree/ore_taking_damage.gd" id="5_cyhxg"]
+[ext_resource type="Script" uid="uid://daxdepv8qh41h" path="res://oree/ore_broken.gd" id="6_bnioy"]
+[ext_resource type="Texture2D" uid="uid://3mjwhjk3egxw" path="res://art/ores/original/broken_stone16x.png" id="7_hclyt"]
+[ext_resource type="Texture2D" uid="uid://bikcv66ukgudh" path="res://art/ores/original/diamond16x.png" id="8_vs5x5"]
+[ext_resource type="Texture2D" uid="uid://7j4kshqx6q7u" path="res://art/ores/original/gold16x.png" id="9_e7h5a"]
+[ext_resource type="Texture2D" uid="uid://b0r8c07q6112q" path="res://art/ores/original/iron16x.png" id="10_p8ogn"]
+[ext_resource type="Texture2D" uid="uid://btrt0u710b6sr" path="res://art/ores/original/ruby16x.png" id="11_5ssy1"]
+[ext_resource type="Texture2D" uid="uid://bu860lm0myw5s" path="res://art/ores/original/stone16x.png" id="12_2vwwv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nyemc"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ngldl"]
+radius = 11.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2ybl"]
+atlas = ExtResource("7_hclyt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jhxt"]
+atlas = ExtResource("8_vs5x5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no4d7"]
+atlas = ExtResource("9_e7h5a")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrmun"]
+atlas = ExtResource("10_p8ogn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcqh1"]
+atlas = ExtResource("11_5ssy1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffnap"]
+atlas = ExtResource("12_2vwwv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dnb8t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2ybl")
+}],
+"loop": true,
+"name": &"broken",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jhxt")
+}],
+"loop": true,
+"name": &"diamnond",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_no4d7")
+}],
+"loop": true,
+"name": &"gold",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrmun")
+}],
+"loop": true,
+"name": &"iron",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcqh1")
+}],
+"loop": true,
+"name": &"ruby",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffnap")
+}],
+"loop": true,
+"name": &"stone",
+"speed": 5.0
+}]
+
+[node name="oree" type="Node2D"]
+script = ExtResource("1_qfv8v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nyemc")
+
+[node name="HitArea" type="Area2D" parent="."]
+script = ExtResource("2_hclyt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+shape = SubResource("CircleShape2D_ngldl")
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("3_nyemc")
+
+[node name="Untouched" type="Node2D" parent="StateMachine"]
+script = ExtResource("4_ngldl")
+
+[node name="TakingDamage" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("ore")]
+script = ExtResource("5_cyhxg")
+ore = NodePath("../..")
+
+[node name="Broken" type="Node2D" parent="StateMachine"]
+script = ExtResource("6_bnioy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("7_hclyt")
+
+[node name="Lights" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dnb8t")
+animation = &"broken"
+
+[connection signal="body_entered" from="HitArea" to="HitArea" method="_on_HitArea_body_entered"]
+[connection signal="body_exited" from="HitArea" to="HitArea" method="_on_HitArea_body_exited"]

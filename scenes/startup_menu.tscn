@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://blagfg6oii4wn"]
+
+[ext_resource type="Script" uid="uid://d3qa53wkfkr2w" path="res://scripts/startup menu.gd" id="1_kjgde"]
+[ext_resource type="Texture2D" uid="uid://sjsdml6a2m85" path="res://art/poster.png" id="2_tuj6k"]
+[ext_resource type="Texture2D" uid="uid://d0g683t17inch" path="res://art/signs/top sign.png" id="3_lphis"]
+[ext_resource type="FontFile" uid="uid://bk1037kswxob5" path="res://art/text/PixelOperator8-Bold.ttf" id="4_gs4la"]
+[ext_resource type="Texture2D" uid="uid://dhj0572w0yejv" path="res://art/signs/rest of sign.png" id="5_boa34"]
+
+[node name="startup menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kjgde")
+
+[node name="WeaponBigHammer" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("2_tuj6k")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -922.0
+offset_top = -211.0
+offset_right = -702.0
+offset_bottom = -139.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PLAY"
+
+[node name="NinePatchRect1" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 168.0
+offset_right = 312.0
+offset_bottom = 398.0
+texture = ExtResource("3_lphis")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -876.0
+offset_top = 299.0
+offset_right = -745.0
+offset_bottom = 351.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_gs4la")
+theme_override_font_sizes/font_size = 35
+text = "Play"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 402.0
+offset_right = 257.0
+offset_bottom = 474.0
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 294.0
+offset_right = 312.0
+offset_bottom = 524.0
+texture = ExtResource("5_boa34")
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 422.0
+offset_right = 220.0
+offset_bottom = 465.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_gs4la")
+theme_override_font_sizes/font_size = 40
+text = "Quit
+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]

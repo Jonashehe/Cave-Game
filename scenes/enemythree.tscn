@@ -1,0 +1,94 @@
+[gd_scene load_steps=14 format=3 uid="uid://bfai8cdu07f01"]
+
+[ext_resource type="Script" uid="uid://bgrvq37rosf4v" path="res://scripts/enemythree.gd" id="1_h66sr"]
+[ext_resource type="Texture2D" uid="uid://dol2dr8ovw3ix" path="res://art/big_zombie_idle_anim_f0.png" id="1_mpvs1"]
+[ext_resource type="Texture2D" uid="uid://cxdq86cwps763" path="res://art/lights/light 1.webp" id="2_6x40y"]
+[ext_resource type="Texture2D" uid="uid://gt04nt5pycyk" path="res://art/enemies/golem idle.png" id="2_v18tt"]
+[ext_resource type="Texture2D" uid="uid://nfapx8nfyr1d" path="res://art/enemies/golem walk.png" id="4_tf83j"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hw6cu"]
+radius = 11.0
+height = 28.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_037ds"]
+atlas = ExtResource("2_v18tt")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmsu4"]
+atlas = ExtResource("2_v18tt")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kqqo"]
+atlas = ExtResource("1_mpvs1")
+region = Rect2(0, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrg5a"]
+atlas = ExtResource("4_tf83j")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4mvi"]
+atlas = ExtResource("4_tf83j")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7sq23"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_037ds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmsu4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kqqo")
+}],
+"loop": true,
+"name": &"null",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrg5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4mvi")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ha62v"]
+radius = 71.03
+
+[node name="enemythree" type="CharacterBody2D"]
+position = Vector2(293, 179)
+script = ExtResource("1_h66sr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -13)
+shape = SubResource("CapsuleShape2D_hw6cu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -18)
+sprite_frames = SubResource("SpriteFrames_7sq23")
+animation = &"walk"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -14)
+shadow_enabled = true
+texture = ExtResource("2_6x40y")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -14)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_ha62v")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

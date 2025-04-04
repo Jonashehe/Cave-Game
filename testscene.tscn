@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4ry3vyontvc1"]
+
+[ext_resource type="PackedScene" uid="uid://hxg4e8skwgtj" path="res://scenes/enemy.tscn" id="1_phd8q"]
+[ext_resource type="PackedScene" uid="uid://dwccriio2kpmr" path="res://scenes/player.tscn" id="2_nvat2"]
+[ext_resource type="PackedScene" uid="uid://bhfgk8egcvyo6" path="res://scenes/ore.tscn" id="3_lvann"]
+[ext_resource type="PackedScene" uid="uid://dc12q557nhkvo" path="res://oree/oree.tscn" id="4_asog6"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_nvat2")]
+position = Vector2(228, 79)
+
+[node name="enemy" parent="." instance=ExtResource("1_phd8q")]
+
+[node name="ore4" parent="." instance=ExtResource("3_lvann")]
+position = Vector2(258, 104)
+
+[node name="ore2" parent="." instance=ExtResource("3_lvann")]
+position = Vector2(280, 85)
+
+[node name="ore" parent="." instance=ExtResource("3_lvann")]
+position = Vector2(274, 100)
+
+[node name="ore3" parent="." instance=ExtResource("3_lvann")]
+position = Vector2(263, 45)
+
+[node name="oree" parent="." instance=ExtResource("4_asog6")]
+position = Vector2(185, 88)

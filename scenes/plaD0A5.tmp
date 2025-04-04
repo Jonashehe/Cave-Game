@@ -1,0 +1,97 @@
+[gd_scene load_steps=13 format=3 uid="uid://dwccriio2kpmr"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_wwdhg"]
+[ext_resource type="Texture2D" uid="uid://u81wxx8wjdbi" path="res://art/knight_f_idle_anim_f1.png" id="1_xauak"]
+[ext_resource type="Texture2D" uid="uid://rew58nnmyq7e" path="res://art/Minerals.png" id="2_65wf0"]
+[ext_resource type="Texture2D" uid="uid://iwu08sdoohbn" path="res://art/lights/light 2.jpg" id="2_acc51"]
+[ext_resource type="Texture2D" uid="uid://cdoeedpow8ntx" path="res://art/weapon_big_hammer.png" id="3_wdxlm"]
+[ext_resource type="FontFile" uid="uid://drr76u2ksyd65" path="res://art/text/PixelOperator8.ttf" id="5_wdbdt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibsew"]
+size = Vector2(4, 4.53333)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvamt"]
+atlas = ExtResource("1_xauak")
+region = Rect2(0, 0, 16, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i00xj"]
+atlas = ExtResource("3_wdxlm")
+region = Rect2(0, 0, 10, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rittb"]
+atlas = ExtResource("2_65wf0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qhc8s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvamt")
+}],
+"loop": true,
+"name": &"human",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i00xj")
+}],
+"loop": true,
+"name": &"mining",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rittb")
+}],
+"loop": false,
+"name": &"ore",
+"speed": 1.0
+}]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5pftf"]
+polygon = PackedVector2Array(-1, -1, -1, -4, 1, -4, 1, -1)
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 1
+script = ExtResource("1_wwdhg")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_acc51")
+texture_scale = 0.18
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.98023e-08, -2.86667)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_ibsew")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -4)
+sprite_frames = SubResource("SpriteFrames_qhc8s")
+animation = &"human"
+autoplay = "human"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_5pftf")
+
+[node name="score" type="Label" parent="."]
+offset_left = -7.0
+offset_top = -59.0
+offset_bottom = -48.0
+theme_override_fonts/font = ExtResource("5_wdbdt")
+theme_override_font_sizes/font_size = 8
+text = "X"
+horizontal_alignment = 1
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="money" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "j"
