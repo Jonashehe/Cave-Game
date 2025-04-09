@@ -19,7 +19,6 @@ func random_ore_picker():
 		get_ore()
 
 func get_ore():
-	print(1)
 	#selects the picked ore as its value
 	var random_ore = ores[randi() % ores.size()]
 	if random_ore == "diamond":

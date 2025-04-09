@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://6l6cav6ruens"
+path="res://.godot/imported/mining sound effect v2.mp3-4a006cff44b0bf89f62b60400b2e5eb6.mp3str"
+
+[deps]
+
+source_file="res://art/audio/mining sound effect v2.mp3"
+dest_files=["res://.godot/imported/mining sound effect v2.mp3-4a006cff44b0bf89f62b60400b2e5eb6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

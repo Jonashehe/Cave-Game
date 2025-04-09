@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b0r8c07q6112q" path="res://art/ores/original/iron16x.png" id="10_p8ogn"]
 [ext_resource type="Texture2D" uid="uid://btrt0u710b6sr" path="res://art/ores/original/ruby16x.png" id="11_5ssy1"]
 [ext_resource type="Texture2D" uid="uid://bu860lm0myw5s" path="res://art/ores/original/stone16x.png" id="12_2vwwv"]
-[ext_resource type="AudioStream" uid="uid://c2w8r8b3cpxfl" path="res://art/audio/mining sound effect.mp3" id="13_e7h5a"]
+[ext_resource type="AudioStream" uid="uid://6l6cav6ruens" path="res://art/audio/mining sound effect v2.mp3" id="13_e7h5a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nyemc"]
 radius = 6.0
@@ -138,6 +138,7 @@ texture = ExtResource("12_2vwwv")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_e7h5a")
+parameters/looping = true
 
 [connection signal="body_entered" from="HitArea" to="HitArea" method="_on_HitArea_body_entered"]
 [connection signal="body_exited" from="HitArea" to="HitArea" method="_on_HitArea_body_exited"]

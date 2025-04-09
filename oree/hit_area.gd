@@ -16,9 +16,12 @@ func _physics_process(delta: float) -> void:
 func _on_HitArea_body_entered(body):
 	if  body.name == "Player":
 		player_state.append(body)
-		$"../StateMachine/TakingDamage".start_timer()
-		body.mining = true
-		body.mining_anim()
+		if $"../StateMachine/TakingDamage".broken == false:
+			$"../StateMachine/TakingDamage".start_timer()
+			body.mining = true
+			body.mining_anim()
+		elif $"../StateMachine/TakingDamage".broken == true:
+			pass
 
 func _on_HitArea_body_exited(body):
 	if body.name == "Player":

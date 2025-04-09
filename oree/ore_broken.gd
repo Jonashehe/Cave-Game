@@ -10,7 +10,6 @@ func enter():
 	$"../../AnimationPlayer".stop()
 	$"../../sprites".rotation = 0
 	$"../../AudioStreamPlayer".stop()
-	$"../TakingDamage".breaking = false
 	global.add_score()
 	$"../../sprites/broken".show()
 	$"../../sprites/diamond".hide()

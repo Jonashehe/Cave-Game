@@ -19,10 +19,7 @@ func enter():
 func start_timer():
 	breaking = true
 	$"../../AnimationPlayer".play("Breakign")
-	while breaking == true:
-		await get_tree().create_timer(0.5).timeout
-		$"../../AudioStreamPlayer".play()
-		
+	$"../../AudioStreamPlayer".play()
 	if timer_running:
 		return
 	timer_running = true
@@ -30,6 +27,8 @@ func start_timer():
 	
 	if get_parent().player_inside:
 		get_parent().state_number = 3
+	breaking = false
+	broken = true
 	timer_running = false
 
 func stop_timer():
