@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dc12q557nhkvo"]
+[gd_scene load_steps=19 format=3 uid="uid://dc12q557nhkvo"]
 
 [ext_resource type="Script" uid="uid://dxpsnqfgrda5u" path="res://oree/oree.gd" id="1_qfv8v"]
 [ext_resource type="Script" uid="uid://bdal6pv23b7nq" path="res://oree/hit_area.gd" id="2_hclyt"]
@@ -12,12 +12,74 @@
 [ext_resource type="Texture2D" uid="uid://b0r8c07q6112q" path="res://art/ores/original/iron16x.png" id="10_p8ogn"]
 [ext_resource type="Texture2D" uid="uid://btrt0u710b6sr" path="res://art/ores/original/ruby16x.png" id="11_5ssy1"]
 [ext_resource type="Texture2D" uid="uid://bu860lm0myw5s" path="res://art/ores/original/stone16x.png" id="12_2vwwv"]
+[ext_resource type="AudioStream" uid="uid://c2w8r8b3cpxfl" path="res://art/audio/mining sound effect.mp3" id="13_e7h5a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nyemc"]
 radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ngldl"]
 radius = 11.0
+
+[sub_resource type="Animation" id="Animation_e7h5a"]
+resource_name = "Breakign"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("../../sprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 0), Vector2(0, 0), Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0), Vector2(0, 0), Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../sprites:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3, 0.441667, 0.6, 0.766667, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.170718, 0.120407, -0.170718, 0.120407, -0.170718, 0.120407, -0.170718]
+}
+
+[sub_resource type="Animation" id="Animation_p8ogn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../sprites:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../sprites:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ssy1"]
+_data = {
+&"Breakign": SubResource("Animation_e7h5a"),
+&"RESET": SubResource("Animation_p8ogn")
+}
 
 [node name="oree" type="Node2D"]
 script = ExtResource("1_qfv8v")
@@ -44,6 +106,12 @@ ore = NodePath("../..")
 [node name="Broken" type="Node2D" parent="StateMachine"]
 script = ExtResource("6_bnioy")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../StateMachine/TakingDamage")
+libraries = {
+&"": SubResource("AnimationLibrary_5ssy1")
+}
+
 [node name="sprites" type="Node2D" parent="."]
 
 [node name="broken" type="Sprite2D" parent="sprites"]
@@ -67,6 +135,9 @@ texture = ExtResource("12_2vwwv")
 [node name="destroy_timer" type="Timer" parent="."]
 
 [node name="restore_timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_e7h5a")
 
 [connection signal="body_entered" from="HitArea" to="HitArea" method="_on_HitArea_body_entered"]
 [connection signal="body_exited" from="HitArea" to="HitArea" method="_on_HitArea_body_exited"]

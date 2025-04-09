@@ -3,7 +3,8 @@ extends Node2D
 @export var ore: Node2D
 var health = 3  # Ore starts with 3 HP
 var broken : bool
-var timer_running = false
+var timer_running : bool = false
+var breaking : bool = false
 
 func _physics_process(delta: float) -> void:
 	pass
@@ -16,6 +17,12 @@ func enter():
 	var state_machine = ore.get_node("StateMachine")  # Get the actual StateMachine node
 
 func start_timer():
+	breaking = true
+	$"../../AnimationPlayer".play("Breakign")
+	while breaking == true:
+		await get_tree().create_timer(0.5).timeout
+		$"../../AudioStreamPlayer".play()
+		
 	if timer_running:
 		return
 	timer_running = true
@@ -27,6 +34,10 @@ func start_timer():
 
 func stop_timer():
 	timer_running = false
+	breaking = false
+	$"../../AnimationPlayer".stop()
+	$"../../sprites".rotation = 0
+	$"../../AudioStreamPlayer".stop()
 
 func exit():
 	pass

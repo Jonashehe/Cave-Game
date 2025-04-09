@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://lq8b5vo37bjf" path="res://art/gold2.png" id="5_inr4v"]
 [ext_resource type="Texture2D" uid="uid://7de6boacxxxk" path="res://art/ruby.png" id="6_gjdi2"]
 [ext_resource type="Texture2D" uid="uid://b6afovatkn787" path="res://art/diamond2.png" id="7_tpufu"]
-[ext_resource type="AudioStream" uid="uid://c2w8r8b3cpxfl" path="res://art/audi/mining sound effect.mp3" id="8_t7imr"]
+[ext_resource type="AudioStream" uid="uid://c2w8r8b3cpxfl" path="res://art/audio/mining sound effect.mp3" id="8_t7imr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2asf1"]
 radius = 6.0

@@ -101,9 +101,13 @@ func animation():
 				elif dir == -1:
 					$AnimatedSprite2D.play("walking")
 					$AnimatedSprite2D.flip_h = true
-	if mining == false:
-		pass
-	elif mining == true and can_mine == true and walking == true:
+	#if mining == false:
+		#pass
+	#elif mining == true and can_mine == true and walking == true:
+		#$AnimatedSprite2D.play("mining")
+		#await get_tree().create_timer(0.45).timeout
+		#mining = false
+	
+func mining_anim():
+	if mining == true:
 		$AnimatedSprite2D.play("mining")
-		await get_tree().create_timer(0.45).timeout
-		mining = false

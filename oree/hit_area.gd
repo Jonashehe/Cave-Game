@@ -17,9 +17,12 @@ func _on_HitArea_body_entered(body):
 	if  body.name == "Player":
 		player_state.append(body)
 		$"../StateMachine/TakingDamage".start_timer()
+		body.mining = true
+		body.mining_anim()
 
 func _on_HitArea_body_exited(body):
 	if body.name == "Player":
 		player_state.erase(body)
 		state_machine.player_inside = false
 		$"../StateMachine/TakingDamage".stop_timer()
+		body.mining = false

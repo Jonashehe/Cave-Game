@@ -112,7 +112,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bdf22")
 }],
-"loop": false,
+"loop": true,
 "name": &"mining",
 "speed": 4.0
 }, {
@@ -214,7 +214,7 @@ shape = SubResource("CapsuleShape2D_ubfox")
 y_sort_enabled = true
 position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_qhc8s")
-animation = &"walking"
+animation = &"mining"
 autoplay = "idle"
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
